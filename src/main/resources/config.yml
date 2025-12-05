@@ -1,0 +1,142 @@
+prefix: "<gray>[<red>BattleRoyale<gray>] <white>"
+min-players: 2
+max-players: 100
+countdown-time: 10
+game-mode: SURVIVAL
+spectator-mode: SPECTATOR
+
+# สิทธิ์การใช้งาน (Permissions):
+# battleroyale.use - สิทธิ์พื้นฐาน
+# battleroyale.join - เข้าร่วมเกม
+# battleroyale.leave - ออกจากเกม
+# battleroyale.create - สร้างเกม
+# battleroyale.delete - ลบเกม
+# battleroyale.start - เริ่มเกม
+# battleroyale.reset - รีเซ็ตเกม
+# battleroyale.setarena - ตั้งค่าขอบเขตสนาม
+# battleroyale.setlobby - ตั้งค่าจุดรอ (Lobby)
+# battleroyale.arena - วาร์ปไปสนาม
+# battleroyale.list - ดูรายการเกม
+# battleroyale.reload - รีโหลดการตั้งค่า
+# battleroyale.admin - สิทธิ์แอดมินทั้งหมด
+
+# การตั้งค่าเปิด/ปิด (Toggles)
+use-permissions: false
+allow-spectators: true
+allow-player-create-game: true
+
+blocked-commands:
+  - "/spawn"
+  - "/home"
+  - "/tpa"
+  - "/tpaccept"
+  - "/tpdeny"
+  - "/warp"
+  - "/back"
+
+safe-teleport:
+  check-water: true
+  check-lava: true
+  check-air-above: true
+  max-attempts: 20
+
+border:
+  arena-size: 500.0 # ขนาดเริ่มต้น
+  particle: "glow" # เอฟเฟกต์ขอบ (glow เหมาะสำหรับ Bedrock)
+  particle-count: 1 # จำนวน particle ต่อจุด
+  min-y: -64
+  max-y: 320
+  horizontal-particle-density: 0.5 # ความหนาแน่นแนวนอน (ค่ายิ่งน้อยยิ่งถี่)
+  vertical-particle-density: 2.0 # ความหนาแน่นแนวตั้ง
+  view-distance: 32 # ระยะมองเห็น particle
+  message-cooldown: 5 # ระยะเวลาแจ้งเตือนเมื่ออยู่นอกวง (วินาที)
+  phases:
+    - time: 60 # เวลารอก่อนบีบวง (วินาที)
+      shrink-time: 20 # เวลาที่ใช้ในการบีบ (ticks)
+      radius: 0.5 # จำนวนบล็อกที่ลดลงต่อขั้น
+      size: 100 # ขนาดเป้าหมาย
+      damage: 1.0 # ความเสียหายเมื่ออยู่นอกวง
+    - time: 60
+      shrink-time: 20
+      radius: 0.5
+      size: 50
+      damage: 2.0
+    - time: 60
+      shrink-time: 20
+      radius: 0.5
+      size: 10
+      damage: 5.0
+
+# รายการ Placeholder (สำหรับนำไปใช้ในข้อความด้านล่าง):
+# %prefix%           - คำนำหน้าข้อความ (Prefix)
+# %player_name%      - ชื่อผู้เล่น
+# %game_id%          - รหัสห้อง/ชื่อห้อง
+# %current_players%  - จำนวนผู้เล่นปัจจุบัน
+# %min_players%      - จำนวนผู้เล่นขั้นต่ำที่ต้องการเพื่อเริ่มเกม
+# %max_players%      - จำนวนผู้เล่นสูงสุดที่รับได้
+# %time_remaining%   - เวลาที่เหลือ (นับถอยหลังเริ่มเกม หรือ วงบีบ)
+# %arena_size%       - ขนาดของ Arena ปัจจุบัน
+# %border_state%     - สถานะของวง (เช่น Waiting, Shrinking)
+# %game_state%       - สถานะของเกม (เช่น WAITING, PLAYING)
+
+messages:
+  no-permission: "%prefix% <red>คุณไม่มีสิทธิ์ใช้งานคำสั่งนี้"
+  command-blocked: "%prefix% <red>คุณไม่สามารถใช้คำสั่งนี้ได้ในขณะเล่นเกม"
+  only-players: "%prefix% <red>คำสั่งนี้สำหรับผู้เล่นเท่านั้น"
+  unknown-command: "%prefix% <red>ไม่พบคำสั่งนี้"
+  usage: "%prefix% <red>วิธีใช้: /br <join|leave|create|delete|setarena|setlobby|start|reset|reload|help>"
+  usage-delete: "%prefix% <red>วิธีใช้: /br delete <game_id>"
+  usage-setarena: "%prefix% <red>วิธีใช้: /br setarena <radius|pos> [args]"
+  usage-setarena-radius: "%prefix% <red>วิธีใช้: /br setarena radius <size>"
+  usage-setarena-pos: "%prefix% <red>วิธีใช้: /br setarena pos <1|2>"
+  invalid-number: "%prefix% <red>ตัวเลขไม่ถูกต้อง"
+  game-in-progress: "%prefix% <red>เกมกำลังดำเนินอยู่!"
+  another-game-running: "%prefix% <red>มีเกมอื่นกำลังดำเนินอยู่ กรุณารอสักครู่"
+  already-in-game: "%prefix% <red>คุณอยู่ในเกมแล้ว!"
+  not-in-game: "%prefix% <red>คุณไม่ได้อยู่ในเกม!"
+  game-not-found: "%prefix% <red>ไม่พบห้องเกมนี้!"
+  no-games-available: "%prefix% <red>ไม่มีห้องว่าง กรุณาสร้างห้องใหม่ด้วย /br create"
+  specify-game: "%prefix% <red>มีหลายห้องให้เลือก กรุณาระบุ ID: /br join <id>"
+  game-created: "%prefix% <green>สร้างห้อง %game_id% สำเร็จ! (ขั้นต่ำ: %min_players%, สูงสุด: %max_players%)"
+  game-deleted: "%prefix% <green>ลบห้อง %game_id% แล้ว"
+  game-full: "%prefix% <red>ห้องเต็มแล้ว! (%max_players% คน)"
+  joined: "%prefix% <green>%player_name% เข้าร่วมเกม! (%current_players%/%min_players%)"
+  left: "%prefix% <yellow>%player_name% ออกจากเกม"
+  not-enough-players: "%prefix% <red>ผู้เล่นไม่เพียงพอ ยกเลิกการนับถอยหลัง"
+  game-starting: "%prefix% <yellow>เกมจะเริ่มใน %time_remaining% วินาที!"
+  countdown-started: "%prefix% <green>เริ่มนับถอยหลัง!"
+  game-started: "%prefix% <green>เกมเริ่มแล้ว! ขอให้โชคดี!"
+  arena-set: "%prefix% <green>ตั้งค่าขนาดสนามเป็น %arena_size%"
+  pos1-set: "%prefix% <green>ตั้งค่าจุดที่ 1 เรียบร้อย"
+  pos2-set: "%prefix% <green>ตั้งค่าจุดที่ 2 เรียบร้อย"
+  lobby-set: "%prefix% <green>ตั้งค่าจุดรอ (Lobby) เรียบร้อย"
+  config-reloaded: "%prefix% <green>รีโหลดการตั้งค่าเรียบร้อย"
+  spectator-enter: "%prefix%<yellow>คุณได้เข้าสู่สนามในฐานะผู้ชม"
+  spectator-leave: "%prefix%<green>คุณออกจากสนามและยกเลิกสถานะผู้ชมแล้ว"
+  left-game-area: "%prefix% <yellow>คุณออกนอกพื้นที่เกม"
+  teleported-arena: "%prefix% <green>วาร์ปไปยังกลางสนาม"
+  safe-spot-not-found-fallback: "%prefix% <red>หาจุดปลอดภัยไม่เจอ! วาร์ปไปที่กลางสนามแทน"
+  arena-not-set: "%prefix% <red>ยังไม่ได้กำหนดขอบเขตสนาม!"
+  safe-spot-not-found: "%prefix% <red>หาจุดปลอดภัยไม่เจอ!"
+  outside-border: "%prefix% <red>คุณอยู่นอกวง!"
+  game-reset: "%prefix% <green>รีเซ็ตเกมเรียบร้อย"
+  game-reset-id: "%prefix% <green>รีเซ็ตห้อง %game_id% เรียบร้อย"
+  all-games-reset: "%prefix% <green>รีเซ็ตทุกห้องเรียบร้อย"
+  game-won: "%prefix% <gold><bold>%player_name% เป็นผู้ชนะ!"
+  eliminated: "%prefix% <red>%player_name% ถูกกำจัดแล้ว!"
+  actionbar-lobby: "<gold>รอผู้เล่น... (%current_players%/%min_players%)"
+  actionbar-lobby-countdown: "<gold>จะเริ่มใน %time_remaining%..."
+  actionbar-game: "<gold>ผู้เล่น: %current_players% | วง: %border_state% (%time_remaining%)"
+  help-header: "<gold>--- ช่วยเหลือ Battle Royale ---"
+  help-join: "<yellow>/br join [id] <gray>- เข้าร่วมเกม"
+  help-leave: "<yellow>/br leave <gray>- ออกจากเกมปัจจุบัน"
+  help-create: "<yellow>/br create <min_players> [max_players] <gray>- สร้างห้องใหม่"
+  help-delete: "<yellow>/br delete <id> <gray>- ลบห้อง"
+  help-setarena: "<yellow>/br setarena <radius|pos> ... <gray>- กำหนดขอบเขตสนาม"
+  help-setlobby: "<yellow>/br setlobby <gray>- กำหนดจุดรอ (Lobby)"
+  help-start: "<yellow>/br start [id] <gray>- บังคับเริ่มเกม"
+  help-reset: "<yellow>/br reset [id] <gray>- รีเซ็ตเกม"
+  help-list: "<yellow>/br list <gray>- ดูรายการห้องทั้งหมด"
+  help-reload: "<yellow>/br reload <gray>- รีโหลด config"
+  list-header: "<gold>--- รายการห้อง ---"
+  list-format: "<yellow>%game_id%: <gray>%game_state% (%current_players%/%max_players%)"

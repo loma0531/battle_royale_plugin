@@ -1,0 +1,63 @@
+name: BattleRoyale
+version: "${project.version}"
+main: com.lamar.battleroyale.BattleRoyalePlugin
+api-version: "1.21"
+authors: [Lamar]
+commands:
+  br:
+    description: Main command for Battle Royale
+    usage: /br <subcommand>
+    permission: battleroyale.use
+    aliases: [battleroyale, battle]
+permissions:
+  battleroyale.use:
+    description: Allows access to basic commands
+    default: true
+  battleroyale.join:
+    description: Allows joining a game
+    default: true
+  battleroyale.leave:
+    description: Allows leaving a game
+    default: true
+  battleroyale.create:
+    description: Allows creating a game
+    default: op
+  battleroyale.delete:
+    description: Allows deleting a game
+    default: op
+  battleroyale.start:
+    description: Allows starting a game
+    default: op
+  battleroyale.reset:
+    description: Allows resetting a game
+    default: op
+  battleroyale.setarena:
+    description: Allows setting arena boundaries
+    default: op
+  battleroyale.setlobby:
+    description: Allows setting lobby location
+    default: op
+  battleroyale.arena:
+    description: Allows warping to arena center
+    default: true
+  battleroyale.list:
+    description: Allows listing games
+    default: true
+  battleroyale.reload:
+    description: Allows reloading config
+    default: op
+  battleroyale.help:
+    description: Allows viewing help
+    default: true
+  battleroyale.admin:
+    description: Allows all admin commands
+    default: op
+    children:
+      battleroyale.create: true
+      battleroyale.delete: true
+      battleroyale.start: true
+      battleroyale.reset: true
+      battleroyale.setarena: true
+      battleroyale.setlobby: true
+      battleroyale.list: true
+      battleroyale.reload: true
